@@ -41,9 +41,9 @@ function MyCopyFileSystem
 	echo -n "Are you sure \"$1\" is the right location? (y/n)"
 	read answer
 	if echo "$answer" | grep -iq "^y" ;then
-    	echo Yes
+    	$RUN
 		else
-    	echo No
+    	echo Bye!
 		fi
 }
 
