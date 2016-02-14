@@ -35,10 +35,25 @@ alias fix='export PROMPT_COMMAND=""'
 #PATH=$PATH:/opt/gcc-arm-none-eabi-4_9-2014q4/bin/
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/node.js/bin/:/root/Android/Sdk/platform-tools/:/opt/gcc-arm-none-eabi-4_8-2014q3/bin/
 
+function MyCopyFileSystem
+{
+	RUN='rsync -aAXv --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found", "/root/*"} / $1'
+	echo -n "Are you sure \"$1\" is the right location? (y/n)"
+	read answer
+	if echo "$answer" | grep -iq "^y" ;then
+    	echo Yes
+		else
+    	echo No
+		fi
+}
+
 function MyBashPull
 {
-	rep=$(dirname `readlink .bashrc`)
-	cd $rep && git pull
+	pwd=$(pwd)
+	rep=$(dirname `readlink ~/.bashrc`)
+	cd $rep
+	git pull origin master
+	cd $pwd
 }
 
 function we_are_in_git_work_tree {
@@ -64,7 +79,7 @@ function parse_git_branch {
 
 function parse_git_status {
     if we_are_in_git_work_tree
-    then 
+    then
     local ST=$(git status --short 2> /dev/null)
     if [ -n "$ST" ]
     then echo -n " + "
@@ -105,7 +120,7 @@ function Main_Prompt {
 	PS1='\[\e[0;31m\]{\h} \u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[0;31m\]\$ \[\e[m\]'
 }
 function Prompt {
-	
+
 	GIT=false
 	TREE="/"
 	arr=$(pwd | tr "/" "\n")
@@ -116,7 +131,7 @@ function Prompt {
 		if [ -d "$TREE/.git" ]
 		then
 			GIT=true
-		fi 
+		fi
 	done
 	#echo $TREE
 	if $GIT
@@ -127,4 +142,3 @@ function Prompt {
 	 fi
 }
 PROMPT_COMMAND='Prompt'
-
