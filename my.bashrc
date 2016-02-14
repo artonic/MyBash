@@ -37,11 +37,11 @@ export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/no
 
 function MyCopyFileSystem
 {
-	RUN='rsync -aAXv --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found", "/root/*"} / $1'
+	cd /
 	echo -n "Are you sure \"$1\" is the right location? (y/n)"
 	read answer
 	if echo "$answer" | grep -iq "^y" ;then
-    	$RUN
+    	rsync -aAXv --exclude="dev/*" --exclude="proc/*" --exclude="sys/*" --exclude="tmp/*" --exclude="run/*" --exclude="mnt/*" --exclude="media/*" --exclude="lost+found" --exclude="root/*" / $1
 		else
     	echo Bye!
 		fi
