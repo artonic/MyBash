@@ -33,18 +33,20 @@ alias fix='export PROMPT_COMMAND=""'
 #export PATH=$PATH:/opt/jdk1.7.0_75/bin/
 #PATH=$PATH:/root/Android/Sdk/platform-tools/
 #PATH=$PATH:/opt/gcc-arm-none-eabi-4_9-2014q4/bin/
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/node.js/bin/:/root/Android/Sdk/platform-tools/:/opt/gcc-arm-none-eabi-4_8-2014q3/bin/
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/Android/Sdk/platform-tools/:/opt/gcc-arm-none-eabi-4_8-2014q3/bin/
 
 function MyCopyFileSystem
 {
+	PWD=$(pwd)
 	cd /
 	echo -n "Are you sure \"$1\" is the right location? (y/n)"
 	read answer
 	if echo "$answer" | grep -iq "^y" ;then
-    	rsync -aAXv --exclude="dev/*" --exclude="proc/*" --exclude="sys/*" --exclude="tmp/*" --exclude="run/*" --exclude="mnt/*" --exclude="media/*" --exclude="lost+found" --exclude="root/*" / $1
+    	rsync -aAXv --exclude="dev/*" --exclude="proc/*" --exclude="sys/*" --exclude="tmp/*" --exclude="run/*" --exclude="mnt/*" --exclude="media/*" --exclude="lost+found" --exclude="root/Exclude/*" / $1
 		else
     	echo Bye!
 		fi
+	cd $PWD
 }
 
 function MyBashPull
