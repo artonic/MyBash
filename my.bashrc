@@ -37,16 +37,19 @@ export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/A
 
 function MyCopyFileSystem
 {
-	PWD=$(pwd)
+	p=`pwd`
 	cd /
 	echo -n "Are you sure \"$1\" is the right location? (y/n)"
 	read answer
 	if echo "$answer" | grep -iq "^y" ;then
-    	rsync -aAXv --exclude="dev/*" --exclude="proc/*" --exclude="sys/*" --exclude="tmp/*" --exclude="run/*" --exclude="mnt/*" --exclude="media/*" --exclude="lost+found" --exclude="root/Exclude/*" / $1
-		else
-    	echo Bye!
-		fi
-	cd $PWD
+    		rsync -aAXv --exclude="dev/*" --exclude="proc/*" --exclude="sys/*" --exclude="tmp/*" --exclude="run/*" --exclude="mnt/*" --exclude="media/*" --exclude="lost+found" --exclude="root/Exclude/*" / $1
+		echo "Copying /usr/include/sys, rsync always misses it for some reason"
+		cp -rp /usr/include/sys/* $1/usr/include/sys/
+		echo "Done!"
+	else
+    		echo Bye!
+	fi
+	cd $p
 }
 
 function MyBashPull
