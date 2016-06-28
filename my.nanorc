@@ -16,8 +16,8 @@ include ~/.nano/Dockerfile.nanorc
 include ~/.nano/fish.nanorc
 include ~/.nano/fortran.nanorc
 include ~/.nano/gentoo.nanorc
-include ~/.nano/git.nanorc
-include ~/.nano/gitcommit.nanorc
+#include ~/.nano/git.nanorc
+#include ~/.nano/gitcommit.nanorc
 include ~/.nano/glsl.nanorc
 include ~/.nano/go.nanorc
 include ~/.nano/groff.nanorc
