@@ -193,6 +193,11 @@
         <command>amixer sset Master,0 toggle</command>
       </action>
     </keybind>
+    <keybind key="C-Escape">
+      <action name="Execute">
+        <command>/opt/MyBash/my.bin/monitor_off</command>
+      </action>
+    </keybind>
     <keybind key="A-F1">
       <action name="Execute">
         <command>xterm -fg white -bg black</command>
