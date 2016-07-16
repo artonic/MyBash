@@ -1,0 +1,2 @@
+#!/bin/bash
+find . -name \*.cc -print0 -or -name \*.h -print0 | xargs -0 grep "$@"

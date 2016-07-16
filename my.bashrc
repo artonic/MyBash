@@ -33,7 +33,7 @@ alias fix='export PROMPT_COMMAND=""'
 #export PATH=$PATH:/opt/jdk1.7.0_75/bin/
 #PATH=$PATH:/root/Android/Sdk/platform-tools/
 #PATH=$PATH:/opt/gcc-arm-none-eabi-4_9-2014q4/bin/
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/Android/Sdk/platform-tools/:/opt/gcc-arm-none-eabi-4_8-2014q3/bin/
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/Android/Sdk/platform-tools/:/opt/gcc-arm-none-eabi-4_8-2014q3/bin/:/opt/MyBash/my.bin
 
 function MyCopyFileSystem
 {
