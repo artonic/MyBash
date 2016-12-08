@@ -29,12 +29,15 @@ alias fix='export PROMPT_COMMAND=""'
 #alias dev='ssh -X dev.profileenterprises.com'
 #alias dev-git='ssh git@web.profileenterprises.com git'
 #export PROMPT_COMMAND=""
-#export JAVA_HOME=/opt/jdk1.7.0_75/bin/java
+export JAVA_HOME=/
 #export PATH=$PATH:/opt/jdk1.7.0_75/bin/
 #PATH=$PATH:/root/Android/Sdk/platform-tools/
 #PATH=$PATH:/opt/gcc-arm-none-eabi-4_9-2014q4/bin/
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/Android/Sdk/platform-tools/:/opt/gcc-arm-none-eabi-4_8-2014q3/bin/:/opt/MyBash/my.bin
-
+function MyTeslong
+{
+	mplayer -fps 30 -cache 128 -tv driver=v4l2:width=640:height=480:device=/dev/video0 tv://
+}
 function MyCopyFileSystem
 {
 	p=`pwd`
@@ -49,6 +52,13 @@ function MyCopyFileSystem
 	else
     		echo Bye!
 	fi
+	cd $p
+}
+function MyStageFileSystem
+{
+	p=`pwd`
+	cd /
+	tar -cvpf /root/Exclude/FS-Stage.tar.gz --directory=/ --exclude=dev --exclude=proc --exclude=sys --exclude=tmp --exclude=run --exclude=mnt --exclude=media --exclude=lost+found --exclude=root/Exclude --exclude=root/Projects --exclude=root/VirtualBox\ VMs .
 	cd $p
 }
 
