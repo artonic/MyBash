@@ -45,7 +45,7 @@ function MyCopyFileSystem
 	echo -n "Are you sure \"$1\" is the right location? (y/n)"
 	read answer
 	if echo "$answer" | grep -iq "^y" ;then
-    		rsync -aAXv --exclude="dev/*" --exclude="proc/*" --exclude="sys/*" --exclude="tmp/*" --exclude="run/*" --exclude="mnt/*" --exclude="media/*" --exclude="lost+found" --exclude="root/Exclude/*" / $1
+    		rsync --delete -aAXv --exclude="dev/*" --exclude="proc/*" --exclude="sys/*" --exclude="tmp/*" --exclude="run/*" --exclude="mnt/*" --exclude="media/*" --exclude="lost+found" --exclude="root/Exclude/*" / $1
 		echo "Copying /usr/include/sys, rsync always misses it for some reason"
 		cp -rp /usr/include/sys/* $1/usr/include/sys/
 		echo "Done!"
